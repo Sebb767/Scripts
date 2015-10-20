@@ -1,3 +1,13 @@
+# No Shebang here - should work for bash and zsh (and maybe other shells)
+# This little helper script contains a lot of aliases and helpers I created with
+# years of shell usage. Before using this you may want to read through the script
+# and fit it to your own needs. 
+# This is meant to replace the .bashrc/.zshrc except for shell-specific stuff 
+# (like prompts). It's used with zsh + ohmyzsh currently, so it is guaranteed
+# to work with it. It should work with bash also, however.
+#
+# (c) Sebastian Kaim, 2015
+
 # don't put duplicate lines or lines starting with space in the history.
 # See bash(1) for more options
 HISTCONTROL=ignoreboth
