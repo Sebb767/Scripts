@@ -15,7 +15,8 @@ HISTCONTROL=ignoreboth
 # append to the history file, don't overwrite it
 #shopt -s histappend
 
-# for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
+# increase the history size
+# for the actual meaning of these values see HISTSIZE and HISTFILESIZE in bash(1)
 HISTSIZE=1000
 HISTFILESIZE=75000
 
@@ -23,7 +24,7 @@ HISTFILESIZE=75000
 # extend path
 PATH="$PATH:$HOME/.composer/vendor/bin"
 
-# aliases
+# default bash aliases
 alias ls='ls --color=auto -h '
 alias dir='dir --color=auto'
 alias vdir='vdir --color=auto'
@@ -59,12 +60,12 @@ function backup
 #
 # local part
 #
-# This part is for pc-specific stuff
+# This part is for device-specific stuff
 ###
 
 # you may want to outsource this
-if [ -f ~/.sebrc-priv ]
-    . ~/.sebrc-priv
+if [ -f "~/.sebrc-priv" ]; then
+    . "~/.sebrc-priv"
 fi
 
 function proj
