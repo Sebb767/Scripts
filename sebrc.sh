@@ -36,21 +36,31 @@ alias egrep='egrep --color=auto'
 alias ll='ls -alFh'
 alias la='ls -A'
 alias l='ls -CFha'
+
+# Some aliases for typos in cd's
 alias ..='cd ..'
 alias cd.='cd .'
 alias cd..='cd ..'
-alias c.='cd .'
 
-alias hg='history|grep -i' # history grep
+alias hg='history|grep -i' # history grep. Handy if you need an old command
 
+# This little function backups a file by copying it to /var/file-backups/$user/$file/$timestamp
 function backup
 {
   if [ -z $1 ]; then
     echo "Usage: $0 file"
     return 1
   fi
+  
+  usrdir="/var/file-backups/$(id -un)"
+  
+  if [ !-w  ]; then
+    echo "The directory $usrdir is not existing or not writeable."
+    echo "Fix this by executing:"
+    echo "sudo mkdir '$usrdir' ; sudo chown -R $(id -un) '$usrdir'"
+  fi
 
-  dir="/var/file-backups/$(id -un)/$1/$(date +%c)"
+  dir="$usrdir/$1/$(date +%c)"
   mkdir -p "$dir"
   cp "$1" "$1~"
   cp "$1" "$dir/$1" 
