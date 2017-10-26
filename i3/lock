@@ -1,0 +1,9 @@
+#!/bin/sh
+# this script takes a random image from ~/.wallpaper and uses it for i3lock.
+
+image="$(find $HOME/.wallpaper | shuf -n1)"
+
+rm /tmp/lockscreen.png
+convert "$image" /tmp/lockscreen.png
+
+i3lock -nfti /tmp/lockscreen.png -I 30
