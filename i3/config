@@ -183,14 +183,14 @@ exec feh --randomize -D 60 --bg-fill ~/.wallpaper/*
 exec nm-applet
 
 # multi-monitor
-workspace 1 output DP-1
-workspace 2 output DP-1
-workspace 3 output DP-1
+workspace 1 output HDMI-1
+workspace 2 output HDMI-1
+workspace 3 output HDMI-1
 workspace 4 output eDP-1
-workspace 5 output DP-1
+workspace 5 output HDMI-1
 workspace 6 output eDP-1
 workspace 7 output eDP-1
 workspace 8 output eDP-1
-workspace 9 output DP-1
+workspace 9 output HDMI-1
 
 
