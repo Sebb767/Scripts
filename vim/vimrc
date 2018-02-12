@@ -25,3 +25,16 @@ set expandtab
 " Enable syntax highlighting
 syntax on
 filetype indent plugin on
+
+" highlight trailing whitespaces
+highlight ExtraWhitespace ctermbg=red guibg=red
+
+" the following pattern will match trailing whitespace, except when typing at the end of a line
+" it will also match spaces before a tab & tabs that are not at the line start
+"match ExtraWhitespace /\s\+\%#\@<!$\| \+\ze\t\|[^\t]\zs\t\+/
+
+" highlight at the start of a window
+autocmd BufWinEnter * match ExtraWhitespace /\s\+\%#\@<!$\| \+\ze\t\|[^\t]\zs\t\+/
+
+" highlight when leaving insert
+au InsertLeave * match ExtraWhitespace /\s\+\%#\@<!$\| \+\ze\t\|[^\t]\zs\t\+/
