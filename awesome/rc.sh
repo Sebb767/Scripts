@@ -4,10 +4,12 @@
 #
 # basic system configuration
 #
-pulseaudio --check || start-pulseaudio-x11 &
+#pulseaudio --check || start-pulseaudio-x11 &
+pulseaudio --check || pulseaudio --daemonize
 if [ -s ~/.Xmodmap ]; then
     xmodmap ~/.Xmodmap
 fi
+compton -cCf -I 1 -O 0.04
 
 #
 # demons & applets
@@ -21,5 +23,5 @@ mate-screensaver & # auto singleton
 #
 # applications
 #
-pgrep chromium || (chrome; sleep 2; chrome --app-id=clhhggbfdinjmjhajaheehoeibfljjno)
+pgrep chromium || (chrome && sleep 2 && chrome --app-id=clhhggbfdinjmjhajaheehoeibfljjno)
 

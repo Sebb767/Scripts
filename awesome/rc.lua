@@ -8,6 +8,8 @@ local wibox = require("wibox")
 local widgetbox = require("widgets")
 -- Theme handling library
 local beautiful = require("beautiful")
+local xresources = require("beautiful.xresources")
+local dpi = xresources.apply_dpi
 -- Notification library
 local naughty = require("naughty")
 local menubar = require("menubar")
@@ -252,9 +254,9 @@ awful.screen.connect_for_each_screen(
 
         -- Each screen has its own tag table.
         local tags = {"1", "2", "3", "4", "5", "6", "7", "8", "9"}
-        -- if s == 1 then
-        tags = {"1", "2", "3", "4", "5", "chrome", "telegram", "mail", "bg"}
-        -- end
+        if s then
+            tags = {"1", "2", "3", "4", "5", "chrome", "telegram", "mail", "bg"}
+        end
         awful.tag(tags, s, awful.layout.layouts[1])
 
         -- Create a promptbox for each screen
@@ -461,7 +463,7 @@ globalkeys =
         {description = "open a terminal", group = "launcher"}
     ),
     awful.key({modkey, "Control"}, "r", awesome.restart, {description = "reload awesome", group = "awesome"}),
-    awful.key({modkey, "Shift"}, "q", awesome.quit, {description = "quit awesome", group = "awesome"}),
+    -- awful.key({modkey, "Shift"}, "q", awesome.quit, {description = "quit awesome", group = "awesome"}),
     awful.key(
         {modkey},
         "l",
@@ -581,14 +583,14 @@ clientkeys =
         end,
         {description = "toggle fullscreen", group = "client"}
     ),
-    -- awful.key(
-    --     {modkey, "Shift"},
-    --     "q",
-    --     function(c)
-    --         c:kill()
-    --     end,
-    --     {description = "close", group = "client"}
-    -- ),
+    awful.key(
+        {modkey, "Shift"},
+        "q",
+        function(c)
+            c:kill()
+        end,
+        {description = "close", group = "client"}
+    ),
     awful.key(
         {modkey, "Control"},
         "space",
@@ -816,6 +818,11 @@ awful.rules.rules = {
     {
         rule = {class = "Evolution"},
         properties = {screen = 1, tag = "mail"}
+    },
+    -- add a nice border to consoles
+    {
+        rule = {class="mate-terminal"},
+        properties = { useless_gap=dpi(3), screen=1,tag="4" }
     }
 }
 -- }}}
