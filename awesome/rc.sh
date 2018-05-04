@@ -9,7 +9,7 @@ pulseaudio --check || pulseaudio --daemonize --start &
 if [ -s ~/.Xmodmap ]; then
     xmodmap ~/.Xmodmap
 fi
-pgrep compton || compton -cCf -I 1 -O 0.04
+pgrep compton || compton -cCf -I 1 -O 0.04 &
 
 #
 # demons & applets

@@ -263,6 +263,15 @@ awful.screen.connect_for_each_screen(
         s.mypromptbox = awful.widget.prompt()
         -- Create an imagebox widget which will contain an icon indicating which layout we're using.
         -- We need one layoutbox per screen.
+        laptop_widgets_top = {}
+        laptop_widgets_bottom = {}
+        if laptop then
+            batic, battxt = widgetbox.batterywidget()
+            laptop_widgets_bottom = { batic, battxt }
+            laptop_widgets_top = { widgetbox.brigthnessicon, widgetbox.brightnesswidget() }
+        end
+
+
         s.mylayoutbox = awful.widget.layoutbox(s)
         s.mylayoutbox:buttons(
             gears.table.join(
@@ -320,15 +329,14 @@ awful.screen.connect_for_each_screen(
                 layout = wibox.layout.fixed.horizontal,
                 s.mypromptbox
             },
-            {
+            gears.table.join(laptop_widgets_top, {
                 -- Right widgets
                 layout = wibox.layout.fixed.horizontal,
                 -- mykeyboardlayout,
-                wibox.widget.systray(),
                 widgetbox.calic,
                 mytextclock,
                 s.mylayoutbox
-            }
+            })
         }
 
         -- lower wibox
@@ -347,7 +355,7 @@ awful.screen.connect_for_each_screen(
                 layout = wibox.layout.fixed.horizontal,
                 bg = "#3a3a3a"
             },
-            {
+            gears.table.join(laptop_widgets_bottom, {
                 -- Right widgets
                 layout = wibox.layout.fixed.horizontal,
                 -- mykeyboardlayout,
@@ -355,7 +363,7 @@ awful.screen.connect_for_each_screen(
                 widgetbox.cpuwidget(),
                 widgetbox.ramic,
                 widgetbox.memwidget()
-            }
+            })
         }
     end
 )

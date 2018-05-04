@@ -10,6 +10,8 @@ local wibox = require("wibox")
 local naughty = require("naughty")
 local menubar = require("menubar")
 local vicious = require("vicious")
+-- own libs
+local brightness = require('brightness')
 
 -- {{{ Widget icons
 themes = os.getenv("HOME") .. "/.config/awesome/theme"
@@ -72,6 +74,16 @@ rpad = function(str, len, char)
 	return str .. string.rep(char, len - #str)
 end
 
+-- reads a file
+local function read_file(path)
+    local file = open(path, "r") -- r read mode and b binary mode
+    if not file then return nil end
+    local content = file:read "*a" -- *a or *all reads the whole file
+    file:close()
+    return content
+end
+
+open = io.open;
 
 
 widgets.brightnessicon = wibox.widget.imagebox()
@@ -101,7 +113,7 @@ widgets.mailic:buttons(
 	)
 )
 
-widgets.brightnesswidget = function(brightness)
+widgets.brightnesswidget = function()
 	brightnesswidget = wibox.widget.textbox()
 	brightnesswidget:set_text(brightness.currentPercent() .. "% ")
 
@@ -128,7 +140,7 @@ widgets.mailwidget = function()
 	return mailwidget
 end
 
-widgets.batterywidget = function(layout)
+widgets.batterywidget = function()
 	batterymon = wibox.widget.imagebox()
 	batterymon_t = wibox.widget.textbox()
 
@@ -143,14 +155,14 @@ widgets.batterywidget = function(layout)
 
 		-- check if charging
 		charging_midfix = ""
-		charging_prefix = "-"
+		charging_prefix = "v"
 		if charging == "Charging\n" then
 			charging_midfix = "charging_"
-			charging_prefix = "+"
+			charging_prefix = "^"
 		end
 		if charging == "Unknown\n" then
 			charging_midfix = "charging_"
-			charging_prefix = "~~ "
+			charging_prefix = "~ "
 		end
 
 		-- determine the image
@@ -176,8 +188,7 @@ widgets.batterywidget = function(layout)
 	batterytimer:connect_signal("timeout", update_bat_widget)
 	batterytimer:start()
 
-	layout:add(batterymon)
-	layout:add(batterymon_t)
+	return batterymon, batterymon_t
 end
 
 widgets.memwidget = function()
