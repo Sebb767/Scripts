@@ -311,7 +311,7 @@ awful.screen.connect_for_each_screen(
         s.mytaglist = awful.widget.taglist(s, awful.widget.taglist.filter.all, taglist_buttons)
 
         -- Create a tasklist widget
-        s.mytasklist = awful.widget.tasklist(s, awful.widget.tasklist.filter.currenttags, tasklist_buttons)
+        s.mytasklist = awful.widget.tasklist(s, awful.widget.tasklist.filter.minimizedcurrenttags, tasklist_buttons)
 
         -- Create the wibox
         s.topwibox = awful.wibar({position = "top", screen = s})
@@ -335,6 +335,7 @@ awful.screen.connect_for_each_screen(
                 -- Right widgets
                 layout = wibox.layout.fixed.horizontal,
                 -- mykeyboardlayout,
+                s.mytasklist,
                 widgetbox.calic,
                 mytextclock,
                 s.mylayoutbox
@@ -349,8 +350,7 @@ awful.screen.connect_for_each_screen(
             {
                 -- Left widgets
                 layout = wibox.layout.fixed.horizontal,
-                wibox.widget.systray(),
-                s.mytasklist
+                wibox.widget.systray()
             },
             {
                 -- Middle widget
