@@ -10,8 +10,6 @@ local wibox = require("wibox")
 local naughty = require("naughty")
 local menubar = require("menubar")
 local vicious = require("vicious")
--- own libs
-local brightness = require('brightness')
 
 -- {{{ Widget icons
 themes = os.getenv("HOME") .. "/.config/awesome/theme"
@@ -113,7 +111,7 @@ widgets.mailic:buttons(
 	)
 )
 
-widgets.brightnesswidget = function()
+widgets.brightnesswidget = function(brightness)
 	brightnesswidget = wibox.widget.textbox()
 	brightnesswidget:set_text(brightness.currentPercent() .. "% ")
 

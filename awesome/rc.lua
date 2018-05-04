@@ -14,6 +14,8 @@ local dpi = xresources.apply_dpi
 local naughty = require("naughty")
 local menubar = require("menubar")
 local hotkeys_popup = require("awful.hotkeys_popup").widget
+-- own libs
+local brightness = require('brightness')
 -- Enable hotkeys help widget for VIM and other apps
 -- when client with a matching name is opened:
 require("awful.hotkeys_popup.keys")
@@ -268,7 +270,7 @@ awful.screen.connect_for_each_screen(
         if laptop then
             batic, battxt = widgetbox.batterywidget()
             laptop_widgets_bottom = { batic, battxt }
-            laptop_widgets_top = { widgetbox.brigthnessicon, widgetbox.brightnesswidget() }
+            laptop_widgets_top = { widgetbox.brigthnessicon, widgetbox.brightnesswidget(brightness) }
         end
 
 
@@ -558,6 +560,16 @@ globalkeys =
         end,
         {description = "run prompt", group = "launcher"}
     ),
+    -- Screen control
+    awful.key({}, "XF86MonBrightnessDown", brightness.dec5, {description = "Decrease brightness by 5%", group = "special"}),
+    awful.key({}, "XF86MonBrightnessUp",   brightness.inc5, {description = "Increase brightness by 5%", group = "special"}),
+    awful.key({ "Shift" }, "XF86MonBrightnessDown", brightness.dec, {description = "Decrease brightness by 1%", group = "special"}),
+    awful.key({ "Shift" }, "XF86MonBrightnessUp",   brightness.inc, {description = "Increase brightness by 1%", group = "special"}),
+    awful.key({ modkey,    }, "b", function()
+        os.execute("sleep 0.2") -- wait for key release
+        brightness.screenOff()
+      end,
+    {description = "Turn off the screen", group = "special"}),
     -- never used this :p
     -- awful.key({ modkey }, "x",
     --           function ()
