@@ -15,19 +15,19 @@ local vicious = require("vicious")
 themes = os.getenv("HOME") .. "/.config/awesome/theme"
 theme = {}
 theme.widget_cpu = themes .. "/icons/sunjack/cpu.png"
-theme.widget_bat = themes .. "/icons/zenburn/bat.png"
+--theme.widget_bat = themes .. "/icons/zenburn/bat.png"
 theme.widget_mem = themes .. "/icons/sunjack/mem.png"
-theme.widget_fs = themes .. "/icons/zenburn/disk.png"
-theme.widget_net = themes .. "/icons/zenburn/down.png"
-theme.widget_netup = themes .. "/icons/zenburn/up.png"
-theme.widget_wifi = themes .. "/icons/zenburn/wifi.png"
+--theme.widget_fs = themes .. "/icons/zenburn/disk.png"
+--theme.widget_net = themes .. "/icons/zenburn/down.png"
+--theme.widget_netup = themes .. "/icons/zenburn/up.png"
+--theme.widget_wifi = themes .. "/icons/zenburn/wifi.png"
 theme.widget_mail = themes .. "/icons/sunjack/mail.png"
 theme.widget_vol = themes .. "/icons/zenburn/vol.png"
-theme.widget_org = themes .. "/icons/sunjack/cal.png"
-theme.widget_date = themes .. "/icons/sunjack/time.png"
+--theme.widget_org = themes .. "/icons/zenburn/cal.png"
+--theme.widget_date = themes .. "/icons/sunjack/time.png"
 theme.widget_brightness = themes .. "/icons/sunjack/half.png"
-theme.widget_crypto = themes .. "/icons/zenburn/crypto.png"
-theme.widget_sep = themes .. "/icons/zenburn/separator.png"
+--theme.widget_crypto = themes .. "/icons/zenburn/crypto.png"
+--theme.widget_sep = themes .. "/icons/zenburn/separator.png"
 -- }}}
 
 local widgets = {}
@@ -144,7 +144,7 @@ widgets.batterywidget = function()
 
 	-- battery widget function
 	function update_bat_widget()
-		img_base = "/home/sebb/.awesome/themes/icons/batterymon/battery_"
+		img_base = "/home/sebb/.awesome/theme/icons/batterymon/battery_"
 
 		-- get the values
 		charging = read_file("/sys/class/power_supply/BAT0/status")

@@ -270,7 +270,7 @@ awful.screen.connect_for_each_screen(
         if laptop then
             batic, battxt = widgetbox.batterywidget()
             laptop_widgets_bottom = { batic, battxt }
-            laptop_widgets_top = { widgetbox.brigthnessicon, widgetbox.brightnesswidget(brightness) }
+            laptop_widgets_top = { widgetbox.brigthnessicon, widgetbox.brightnesswidget(brightness) , battxt }
         end
 
 
@@ -336,7 +336,7 @@ awful.screen.connect_for_each_screen(
                 layout = wibox.layout.fixed.horizontal,
                 -- mykeyboardlayout,
                 s.mytasklist,
-                widgetbox.calic,
+                -- widgetbox.calic,
                 mytextclock,
                 s.mylayoutbox
             })
