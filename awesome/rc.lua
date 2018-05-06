@@ -332,11 +332,10 @@ awful.screen.connect_for_each_screen(
                 layout = wibox.layout.fixed.horizontal,
                 s.mypromptbox
             },
-            gears.table.join(laptop_widgets_top, {
+            gears.table.join({s.mytasklist}, laptop_widgets_top, {
                 -- Right widgets
                 layout = wibox.layout.fixed.horizontal,
                 -- mykeyboardlayout,
-                s.mytasklist,
                 -- widgetbox.calic,
                 mytextclock,
                 s.mylayoutbox
