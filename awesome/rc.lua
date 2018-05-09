@@ -843,7 +843,21 @@ awful.rules.rules = {
     {
         rule = {class="mate-terminal"},
         properties = { useless_gap=dpi(3), screen=1,tag="4" }
-    }
+    },
+    -- intellij fix
+{ rule = {
+        class = "jetbrains-.*",
+        instance = "sun-awt-X11-XWindowPeer",
+        name = "win.*"
+    },
+    properties = {
+        floating = true,
+        focus = true,
+        focusable = false,
+        ontop = true,
+        placement = awful.placement.restore,
+        buttons = {}
+    }}
 }
 -- }}}
 
