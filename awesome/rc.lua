@@ -343,7 +343,7 @@ awful.screen.connect_for_each_screen(
         }
 
         -- lower wibox
-        s.bottomwibox = awful.wibar({position = "bottom", screen = s, ontop = true, visible = true, bg = "#a8ccd730"})
+        s.bottomwibox = awful.wibar({position = "bottom", screen = s, ontop = false, visible = true, bg = "#a8ccd730"})
 
         s.bottomwibox:setup {
             layout = wibox.layout.align.horizontal,
