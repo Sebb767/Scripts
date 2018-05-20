@@ -857,7 +857,8 @@ awful.rules.rules = {
         ontop = true,
         placement = awful.placement.restore,
         buttons = {}
-    }}
+    }},
+    { rule = { name= "3D Renderer" }, properties = { floating = true } }
 }
 -- }}}
 
