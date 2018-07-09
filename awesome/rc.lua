@@ -256,9 +256,9 @@ awful.screen.connect_for_each_screen(
         set_wallpaper(s)
 
         -- Each screen has its own tag table.
-        local tags = {"1", "2", "3", "4", "5", "6", "7", "8", "9"}
-        if s then
-            tags = {"1", "2", "3", "4", "5", "chrome", "telegram", "mail", "bg"}
+        local tags = {"P1", "P2", "P3", "P4", "P5", "chrome", "telegram", "mail", "bg"}
+        if screen.primary ~= s then
+            tags = {"1", "2", "3", "4", "5", "6", "7", "8", "9"}
         end
         awful.tag(tags, s, awful.layout.layouts[1])
 
@@ -960,6 +960,30 @@ client.connect_signal(
     end
 )
 -- }}}
+
+-- keep windows on switch
+tag.connect_signal("request::screen",
+  function(t)
+    local fallback_tag = nil
+
+    -- find tag with same name on any other screen
+    for other_screen in screen do
+      if other_screen ~= t.screen then
+        fallback_tag = awful.tag.find_by_name(other_screen, t.name)
+        if fallback_tag ~= nil then
+          break
+        end
+      end
+    end
+
+    -- no tag with same name exists, chose random one
+    if fallback_tag == nil then
+      fallback_tag = awful.tag.find_fallback()
+    end
+
+    -- delete the tag and move it to other screen
+    t:delete(fallback_tag, true)
+  end)
 
 -- run autostart scripts
 local param = ""
