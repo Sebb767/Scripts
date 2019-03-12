@@ -858,7 +858,18 @@ awful.rules.rules = {
         placement = awful.placement.restore,
         buttons = {}
     }},
-    { rule = { name= "3D Renderer" }, properties = { floating = true } }
+    { rule = { name= "3D Renderer" }, properties = { floating = true } },
+    -- pdfpc
+    -- Set chromium to always map on tags number 7 of screen 1.
+    {
+        rule = {role = "presenter"},
+        properties = {floating = true}
+    },
+    {
+        rule = {role = "presentation"},
+        properties = {ontop = true, floating = true, screen = "2", tag = "1", titlebars_enabled = false}
+    }
+
 }
 -- }}}
 
